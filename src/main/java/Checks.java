@@ -43,6 +43,7 @@ public class Checks {
         Figures p1 = checkedPole[0][0];
         Figures p2 = checkedPole[1][1];
         Figures p3 = checkedPole[2][2];
+
         if (p1 != null && p2 != null && p3 != null) {
             if (p1.equals(p2) && p1.equals(p3)) {
                 isWin = true;
@@ -54,6 +55,7 @@ public class Checks {
         Figures p1 = checkedPole[0][2];
         Figures p2 = checkedPole[1][1];
         Figures p3 = checkedPole[2][0];
+
         if (p1 != null && p2 != null && p3 != null) {
             if (p1.equals(p2) && p1.equals(p3)) {
                 isWin = true;
@@ -65,6 +67,7 @@ public class Checks {
         Figures p1 = checkedPole[0][i];
         Figures p2 = checkedPole[1][i];
         Figures p3 = checkedPole[2][i];
+
         if (p1 != null && p2 != null && p3 != null) {
             if (p1.equals(p2) && p1.equals(p3)) {
                 isWin = true;

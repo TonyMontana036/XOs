@@ -1,13 +1,15 @@
+import java.sql.SQLOutput;
+
 public class GameService {
 
     /**
      * [x]Переменная для ходов
      * [x]Запускать проверку победы после 5го хода
      * [x]Проверять победу только для линий в которых установлен знак
-     * []Ходить по очереди автоматически
-     * []включить Гит
-     * []Нарисовать карту
-     * []Заполнить карту
+     * [x]Ходить по очереди автоматически
+     * [x]включить Гит
+     * [x]Нарисовать карту
+     * [x]Заполнить карту
      * []Юнит тесты
      * []Перезапуск игры
      * []Выбор одного игрока или 2х
@@ -19,33 +21,60 @@ public class GameService {
 
     public static void main(String[] args) {
         Checks checks = new Checks();
+        PolePoint currentPolePoint;
 
         GameSettings newGame = new GameSettings(3);
-        Figures[][] currentGamePole = newGame.getGamePole();
+        Figures[][] currentGameMap = newGame.getGamePoles();
+        Figures currentFigure = Figures.POINT;
 
-        int step = Integer.parseInt("3");
+        MapXO x = new MapXO();
 
-        PolePoint s = new PolePoint(step);
+//        currentGameMap[0][0] =  Figures.CROSS;
+//        currentGameMap[1][1] =  Figures.CROSS;
+//        currentGameMap[2][2] =  Figures.CROSS;
+//        currentGameMap[0][1] =  Figures.POINT;
+//        currentGameMap[0][2] =  Figures.POINT;
+//        currentGameMap[2][1] =  Figures.POINT;
 
-        Figures currentFigure = Figures.CROSS;
+        x.printMap(currentGameMap);
+        x.printMap(currentGameMap);
+        x.printMap(currentGameMap);
+//        Scanner in = new Scanner(System.in);
+//        System.out.println("Введите чистло число");
+//        int num = in.nextInt();
+//        System.out.println(in);
+//        in.close();
 
-        newGame.addFigureIntoPole(new PolePoint(1), currentFigure);
-        newGame.addFigureIntoPole(new PolePoint(2), currentFigure);
-        newGame.addFigureIntoPole(s, currentFigure);
+        //вывод теста Укажите поле для символа
+        //ввод поля
+        //проверка что поле пустое
+        //передаем поле
 
-        newGame.setStepCounter(4);
-        newGame.incStepCounter();
+        int i = 3;
 
-        while (newGame.getStepCounter() > 4) {
-            checks.check(s, currentFigure, currentGamePole);
-            if (checks.isWin) {
-                break;
+        do {
+            System.out.println("Ход " + newGame.getStepCounter());
+
+            if (currentFigure == Figures.CROSS) {
+                currentFigure = Figures.POINT;
+                System.out.println("Ходит " + currentFigure.getNamed());
+            } else {
+                currentFigure = Figures.CROSS;
+                System.out.println("Ходит " + currentFigure.getNamed());
             }
 
+
+            currentPolePoint = new PolePoint(i);
+            newGame.addFigureIntoPole(currentPolePoint, currentFigure);
+
+            if (newGame.getStepCounter() > 4) {
+                checks.isWin = true;
+            } else {
+
+            }
             newGame.incStepCounter();
-        }
+        } while (!checks.isWin);
 
-        System.out.println("Победитель " + currentFigure.name());
-
+        System.out.println("Победитель " + currentFigure.getNamed());
     }
 }
