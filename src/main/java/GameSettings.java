@@ -1,10 +1,10 @@
 public class GameSettings {
 
-    private int stepCounter;
+    private int stepCounter = 1;
 
     private final Figures[][] gamePole;
 
-    public Figures[][] getGamePole() {
+    public Figures[][] getGamePoles() {
         return gamePole;
     }
 
@@ -19,11 +19,6 @@ public class GameSettings {
      public int getStepCounter() {
            return stepCounter;
       }
-
-
-    public void setStepCounter(int stepCounter) {
-        this.stepCounter = stepCounter;
-    }
 
     public void incStepCounter() {
         stepCounter++;
