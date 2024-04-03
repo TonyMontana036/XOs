@@ -1,8 +1,13 @@
 public class Checks {
-    boolean isWin;
-    Figures[][] checkedPole;
-    int checkedlPole;
-    int checkedwPole;
+    private boolean isWin;
+
+    public boolean isWin() {
+        return isWin;
+    }
+
+    private Figures[][] checkedPole;
+    private int checkedlPole;
+    private int checkedwPole;
 
     void check(PolePoint polePoint, Figures[][] gameMap) {
         isWin = false;
@@ -15,7 +20,7 @@ public class Checks {
 
     private void checksByPole(int poleNumber, int lPole, int wPole) {
         switch (poleNumber) {
-            case 1, 3, 7, 9: {
+            case 1, 9: {
                 lineCheck(lPole);
                 columnCheck(wPole);
                 rightCrossCheck();
@@ -26,13 +31,17 @@ public class Checks {
                 columnCheck(wPole);
             }
             break;
+            case 3, 7: {
+                lineCheck(lPole);
+                columnCheck(wPole);
+                leftCrossCheck();
+            }
             case 5: {
                 lineCheck(lPole);
                 columnCheck(wPole);
                 rightCrossCheck();
                 leftCrossCheck();
             }
-            break;
             default:
                 break;
         }

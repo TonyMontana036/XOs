@@ -1,8 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class GameSettings {
 
     private int stepCounter = 1;
 
     private final Figures[][] gamePole;
+
+    private final  List<Integer> array = new ArrayList<>();
+
+    public List<Integer> getArray() {
+        return array;
+    }
+
+    private final Scanner in = new Scanner(System.in);
+
+    public Scanner getIn() {
+        return in;
+    }
 
     public Figures[][] getGamePoles() {
         return gamePole;

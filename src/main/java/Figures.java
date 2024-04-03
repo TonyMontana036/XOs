@@ -1,6 +1,6 @@
 public enum Figures {
-    CROSS ("Крестик"),
-    POINT ("Нолик");
+    CROSS("Крестик"),
+    POINT("Нолик");
 
     private final String named;
 

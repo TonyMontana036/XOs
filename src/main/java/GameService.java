@@ -1,22 +1,11 @@
-import java.sql.SQLOutput;
-
 public class GameService {
 
     /**
-     * [x]Переменная для ходов
-     * [x]Запускать проверку победы после 5го хода
-     * [x]Проверять победу только для линий в которых установлен знак
-     * [x]Ходить по очереди автоматически
-     * [x]включить Гит
-     * [x]Нарисовать карту
-     * [x]Заполнить карту
+     * [x]Ничья
      * []Юнит тесты
      * []Перезапуск игры
      * []Выбор одного игрока или 2х
-     * [x]Проверка по линии
-     * [x]проверка по столбику
-     * [x]проверка по диагонали — вниз влево инкремент (вниз вправо инкремент)
-     * [x]Подумать над конструктором в Game что бы размер карты передавать
+     * []Узнать как делать консольное приложение
      */
 
     public static void main(String[] args) {
@@ -26,35 +15,15 @@ public class GameService {
         GameSettings newGame = new GameSettings(3);
         Figures[][] currentGameMap = newGame.getGamePoles();
         Figures currentFigure = Figures.POINT;
+        MapXO mapXO = new MapXO();
 
-        MapXO x = new MapXO();
-
-//        currentGameMap[0][0] =  Figures.CROSS;
-//        currentGameMap[1][1] =  Figures.CROSS;
-//        currentGameMap[2][2] =  Figures.CROSS;
-//        currentGameMap[0][1] =  Figures.POINT;
-//        currentGameMap[0][2] =  Figures.POINT;
-//        currentGameMap[2][1] =  Figures.POINT;
-
-        x.printMap(currentGameMap);
-        x.printMap(currentGameMap);
-        x.printMap(currentGameMap);
-//        Scanner in = new Scanner(System.in);
-//        System.out.println("Введите чистло число");
-//        int num = in.nextInt();
-//        System.out.println(in);
-//        in.close();
-
-        //вывод теста Укажите поле для символа
-        //ввод поля
-        //проверка что поле пустое
-        //передаем поле
-
-        int i = 3;
+        mapXO.printMap(currentGameMap);
 
         do {
+            int num;
             System.out.println("Ход " + newGame.getStepCounter());
 
+            //Определяем тип фигуры для хода
             if (currentFigure == Figures.CROSS) {
                 currentFigure = Figures.POINT;
                 System.out.println("Ходит " + currentFigure.getNamed());
@@ -63,18 +32,46 @@ public class GameService {
                 System.out.println("Ходит " + currentFigure.getNamed());
             }
 
+            //Считваем ввод для поля
+            //  System.out.println("Укажите поле для " + currentFigure.getNamed() + "а");
+            do {
+                if (newGame.getIn().hasNextInt()) {
+                    num = newGame.getIn().nextInt();
+                    if (num < 1 || num > 9) {
+                        System.out.println("Введите номер поля для " + currentFigure.getNamed() + "а : 1 - 9");
+                        num = 0;
+                    } else if (newGame.getArray().contains(num)) {
+                        System.out.println();
+                        System.out.println("Укажите свободное поле для ввода " + currentFigure.getNamed() + "а");
+                        System.out.println();
+                        mapXO.printMap(currentGameMap);
+                        num = 0;
+                    } else {
+                        newGame.getArray().add(num);
+                    }
+                } else {
+                    System.out.println("Введите номер поля для " + currentFigure.getNamed() + "а : 1 - 9");
+                    newGame.getIn().next();
+                    num = 0;
+                }
+            } while (num < 1);
 
-            currentPolePoint = new PolePoint(i);
+            currentPolePoint = new PolePoint(num);
             newGame.addFigureIntoPole(currentPolePoint, currentFigure);
+            mapXO.printMap(currentGameMap);
 
+            //Проверяем наступление победы
             if (newGame.getStepCounter() > 4) {
-                checks.isWin = true;
-            } else {
-
+                checks.check(currentPolePoint, currentGameMap);
             }
-            newGame.incStepCounter();
-        } while (!checks.isWin);
 
-        System.out.println("Победитель " + currentFigure.getNamed());
+            newGame.incStepCounter();
+        } while ((!checks.isWin()) && (newGame.getStepCounter() < 10));
+
+        if (checks.isWin()) {
+            System.out.println("Победитель " + currentFigure.getNamed());
+        } else {
+            System.out.println("Ничья");
+        }
     }
 }

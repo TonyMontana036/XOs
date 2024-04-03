@@ -2,19 +2,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class MapXO {
-
-//    public void printMap(Figures[][] figures){
-//
-//        String [][] s = new String[figures[0].length][figures.length];
-//
-//        for (int i = 0; i < figures[0].length; i++) {
-//            for (int j = 0; j < figures.length; j++) {
-//                s[i][j] = figures[i][j].toString();
-//            }
-//        }
-//
-//        printMap();
-//    }
     public void printMap(Figures[][] mapArray) {
 
         Queue<String> queue = new LinkedList<>();
@@ -23,12 +10,13 @@ public class MapXO {
             for (int j = 0; j < mapArray.length; j++) {
                 if (mapArray[i][j] == null) {
                     queue.add(" ");
-                } else if(mapArray[i][j] == Figures.CROSS){
+                } else if (mapArray[i][j] == Figures.CROSS) {
                     queue.add("X");
-                } else {queue.add("O");}
+                } else {
+                    queue.add("O");
+                }
             }
         }
-
 
 
         System.out.println();
@@ -50,8 +38,8 @@ public class MapXO {
         array[1] = s;
         array[3] = s;
 
-        for (int i = 0; i < array.length; i++){
-            if(array[i] == null){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
                 array[i] = q.poll();
             }
             System.out.print(array[i]);
