@@ -1,23 +1,9 @@
-public class GameService {
+import java.util.Scanner;
 
-    /**
-     * [x]Ничья
-     * []Юнит тесты
-     * []Перезапуск игры
-     * []Выбор одного игрока или 2х
-     * []Узнать как делать консольное приложение
-     */
-
-    public static void main(String[] args) {
-        Checks checks = new Checks();
+public class GameLogic {
+    boolean exit;
+    public Figures getFigures(GameSettings newGame, Figures currentFigure, MapXO mapXO, Figures[][] currentGameMap, Checks checks, Scanner scanner) {
         PolePoint currentPolePoint;
-
-        GameSettings newGame = new GameSettings(3);
-        Figures[][] currentGameMap = newGame.getGamePoles();
-        Figures currentFigure = Figures.POINT;
-        MapXO mapXO = new MapXO();
-
-        mapXO.printMap(currentGameMap);
 
         do {
             int num;
@@ -33,10 +19,9 @@ public class GameService {
             }
 
             //Считваем ввод для поля
-            //  System.out.println("Укажите поле для " + currentFigure.getNamed() + "а");
             do {
-                if (newGame.getIn().hasNextInt()) {
-                    num = newGame.getIn().nextInt();
+                if (scanner.hasNextInt()) {
+                    num = scanner.nextInt();
                     if (num < 1 || num > 9) {
                         System.out.println("Введите номер поля для " + currentFigure.getNamed() + "а : 1 - 9");
                         num = 0;
@@ -51,7 +36,7 @@ public class GameService {
                     }
                 } else {
                     System.out.println("Введите номер поля для " + currentFigure.getNamed() + "а : 1 - 9");
-                    newGame.getIn().next();
+                    scanner.next();
                     num = 0;
                 }
             } while (num < 1);
@@ -67,11 +52,15 @@ public class GameService {
 
             newGame.incStepCounter();
         } while ((!checks.isWin()) && (newGame.getStepCounter() < 10));
+        return currentFigure;
+    }
 
+    public void whoWin(Figures currentFigure, Checks checks){
         if (checks.isWin()) {
             System.out.println("Победитель " + currentFigure.getNamed());
         } else {
             System.out.println("Ничья");
         }
+        exit = true;
     }
 }

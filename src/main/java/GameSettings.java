@@ -8,16 +8,10 @@ public class GameSettings {
 
     private final Figures[][] gamePole;
 
-    private final  List<Integer> array = new ArrayList<>();
+    private final List<Integer> array = new ArrayList<>();
 
     public List<Integer> getArray() {
         return array;
-    }
-
-    private final Scanner in = new Scanner(System.in);
-
-    public Scanner getIn() {
-        return in;
     }
 
     public Figures[][] getGamePoles() {
@@ -32,9 +26,9 @@ public class GameSettings {
         gamePole[polePoint.getlPole()][polePoint.getwPole()] = figure;
     }
 
-     public int getStepCounter() {
-           return stepCounter;
-      }
+    public int getStepCounter() {
+        return stepCounter;
+    }
 
     public void incStepCounter() {
         stepCounter++;
