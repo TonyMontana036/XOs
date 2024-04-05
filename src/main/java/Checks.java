@@ -53,11 +53,7 @@ public class Checks {
         Figures p2 = checkedPole[1][1];
         Figures p3 = checkedPole[2][2];
 
-        if (p1 != null && p2 != null && p3 != null) {
-            if (p1.equals(p2) && p1.equals(p3)) {
-                isWin = true;
-            }
-        }
+        compareFigures(p1, p2, p3);
     }
 
     private void leftCrossCheck() {
@@ -65,11 +61,7 @@ public class Checks {
         Figures p2 = checkedPole[1][1];
         Figures p3 = checkedPole[2][0];
 
-        if (p1 != null && p2 != null && p3 != null) {
-            if (p1.equals(p2) && p1.equals(p3)) {
-                isWin = true;
-            }
-        }
+        compareFigures(p1, p2, p3);
     }
 
     private void columnCheck(int i) {
@@ -77,11 +69,7 @@ public class Checks {
         Figures p2 = checkedPole[1][i];
         Figures p3 = checkedPole[2][i];
 
-        if (p1 != null && p2 != null && p3 != null) {
-            if (p1.equals(p2) && p1.equals(p3)) {
-                isWin = true;
-            }
-        }
+        compareFigures(p1, p2, p3);
     }
 
     private void lineCheck(int i) {
@@ -89,6 +77,10 @@ public class Checks {
         Figures p2 = checkedPole[i][1];
         Figures p3 = checkedPole[i][2];
 
+        compareFigures(p1, p2, p3);
+    }
+
+    private void compareFigures(Figures p1, Figures p2, Figures p3) {
         if (p1 != null && p2 != null && p3 != null) {
             if (p1.equals(p2) && p1.equals(p3)) {
                 isWin = true;
