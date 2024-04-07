@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class MapXO {
+public class GraphicMapXO {
     public void printMap(Figures[][] mapArray) {
 
         Queue<String> queue = queueForMap(mapArray);

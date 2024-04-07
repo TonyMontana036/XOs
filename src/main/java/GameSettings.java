@@ -10,8 +10,14 @@ public class GameSettings {
 
     private final List<Integer> array = new ArrayList<>();
 
+    private int square;
+
     public List<Integer> getArray() {
         return array;
+    }
+
+    public int getSquare() {
+        return square;
     }
 
     public Figures[][] getGamePoles() {
@@ -20,6 +26,7 @@ public class GameSettings {
 
     public GameSettings(int lengthWidthPole) {
         gamePole = new Figures[lengthWidthPole][lengthWidthPole];
+        square = lengthWidthPole*lengthWidthPole;
     }
 
     public void addFigureIntoPole(PolePoint polePoint, Figures figure) {

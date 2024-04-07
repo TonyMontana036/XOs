@@ -18,11 +18,12 @@ public class Aplication {
         GameSettings newGame = new GameSettings(3);
         Figures[][] currentGameMap = newGame.getGamePoles();
         Figures currentFigure = Figures.POINT;
-        MapXO mapXO = new MapXO();
-        mapXO.printMap(currentGameMap);
+        GraphicMapXO graphicMapXO = new GraphicMapXO();
+
+        graphicMapXO.printMap(currentGameMap);
 
 
-        currentFigure = gameLogic.getFigures(newGame, currentFigure, mapXO, currentGameMap, checks, scanner);
+        currentFigure = gameLogic.getFigures(newGame, currentFigure, graphicMapXO, currentGameMap, checks, scanner);
         gameLogic.whoWin(currentFigure, checks);
 
         scanner.close();

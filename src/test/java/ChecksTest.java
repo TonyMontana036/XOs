@@ -1,6 +1,8 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ChecksTest {
 
@@ -22,7 +24,7 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertFalse(checks.isWin(), "Победа засчитана ошибочно");
+        assertFalse(checks.isWin(), "Победа засчитана ошибочно");
     }
 
     @Test
@@ -35,7 +37,7 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertTrue(checks.isWin(), "Фигуры в линии не совпадают");
+        assertTrue(checks.isWin(), "Фигуры в линии не совпадают");
     }
 
     @Test
@@ -48,7 +50,7 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertTrue(checks.isWin(), "Фигуры в cтолбе не совпадают");
+        assertTrue(checks.isWin(), "Фигуры в cтолбе не совпадают");
     }
 
     @Test
@@ -64,7 +66,7 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertFalse(checks.isWin(), "Фигуры в cтолбе совпадают");
+        assertFalse(checks.isWin(), "Фигуры в cтолбе совпадают");
     }
 
     @Test
@@ -77,7 +79,7 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertTrue(checks.isWin(), "Фигуры в диагонали не совпадают");
+        assertTrue(checks.isWin(), "Фигуры в диагонали не совпадают");
     }
 
     @Test
@@ -90,6 +92,6 @@ class ChecksTest {
 
         checks.check(polePoint, figures);
 
-        Assertions.assertTrue(checks.isWin(), "Фигуры в диагонали не совпадают");
+        assertTrue(checks.isWin(), "Фигуры в диагонали не совпадают");
     }
 }
