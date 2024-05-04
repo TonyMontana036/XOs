@@ -4,12 +4,13 @@ public class GameLogic {
     // boolean exit;
     public Figures getFigures(GameSettings newGame, Figures currentFigure, GraphicMapXO graphicMapXO, Figures[][] currentGameMap, Checks checks, Scanner scanner) {
         PolePoint currentPolePoint;
+        boolean isExitGame = false;
 
         do {
             int num;
             System.out.println("Ход " + newGame.getStepCounter());
 
-            //Определяем тип фигуры для хода
+            //region Определяем тип фигуры для хода
             if (currentFigure == Figures.CROSS) {
                 currentFigure = Figures.POINT;
                 System.out.println("Ходит " + currentFigure.getNamed());
@@ -17,8 +18,9 @@ public class GameLogic {
                 currentFigure = Figures.CROSS;
                 System.out.println("Ходит " + currentFigure.getNamed());
             }
+            //endregion
 
-            //Считваем ввод для поля
+            //region Считваем ввод для поля
             do {
                 if (scanner.hasNextInt()) {
                     num = scanner.nextInt();
@@ -26,9 +28,7 @@ public class GameLogic {
                         printRule(currentFigure, newGame);
                         num = 0;
                     } else if (newGame.getArray().contains(num)) {
-                        System.out.println();
-                        System.out.println("Укажите свободное поле для ввода " + currentFigure.getNamed() + "а");
-                        System.out.println();
+                        enterFigureIntoRightPolePrinter(currentFigure);
                         graphicMapXO.printMap(currentGameMap);
                         num = 0;
                     } else {
@@ -40,19 +40,32 @@ public class GameLogic {
                     num = 0;
                 }
             } while (num < 1);
+            //endregion
 
             currentPolePoint = new PolePoint(num);
             newGame.addFigureIntoPole(currentPolePoint, currentFigure);
             graphicMapXO.printMap(currentGameMap);
 
-            //Проверяем наступление победы
+            //region Проверяем наступление победы
             if (newGame.getStepCounter() > 4) {
                 checks.check(currentPolePoint, currentGameMap);
             }
+            //endregion
 
             newGame.incStepCounter();
-        } while ((!checks.isWin()) && (newGame.getStepCounter() < newGame.getSquare()+1));
+
+            if (checks.isWin() || !(newGame.getStepCounter() < newGame.getSquare() + 1)) {
+                //|| checks.forceDraw.isEmpty()
+                isExitGame = true;
+            }
+        } while (!isExitGame);
         return currentFigure;
+    }
+
+    private void enterFigureIntoRightPolePrinter(Figures currentFigure) {
+        System.out.println();
+        System.out.println("Укажите свободное поле для ввода " + currentFigure.getNamed() + "а");
+        System.out.println();
     }
 
     private void printRule(Figures currentFigure, GameSettings newGame) {
@@ -65,6 +78,5 @@ public class GameLogic {
         } else {
             System.out.println("Ничья");
         }
-        // exit = true;
     }
 }

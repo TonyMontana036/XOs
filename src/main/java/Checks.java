@@ -1,4 +1,8 @@
+import java.io.OptionalDataException;
+import java.util.ArrayList;
+
 public class Checks {
+   // public ArrayList<> forceDraw;
     private boolean isWin;
 
     public boolean isWin() {
@@ -6,14 +10,12 @@ public class Checks {
     }
 
     private Figures[][] checkedPole;
-    private int checkedlPole;
-    private int checkedwPole;
 
     void check(PolePoint polePoint, Figures[][] gameMap) {
         isWin = false;
         checkedPole = gameMap;
-        checkedlPole = polePoint.getlPole();
-        checkedwPole = polePoint.getwPole();
+        int checkedlPole = polePoint.getlPole();
+        int checkedwPole = polePoint.getwPole();
 
         checksByPole(polePoint.getConvertedPole(), checkedlPole, checkedwPole);
     }

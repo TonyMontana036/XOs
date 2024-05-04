@@ -2,6 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class GraphicMapXO {
+    int poleSize = 3;
+
     public void printMap(Figures[][] mapArray) {
 
         Queue<String> queue = queueForMap(mapArray);
@@ -19,10 +21,19 @@ public class GraphicMapXO {
         System.out.println();
     }
 
-    private static Queue<String> queueForMap(Figures[][] mapArray) {
+    private Queue<String> queueForMap(Figures[][] mapArray) {
         Queue<String> queue = new LinkedList<>();
 
-        String[][] plotArray = {{"1", "2", "3"},{"4", "5", "6"},{"7", "8", "9"}};
+        String[][] plotArray = new String[poleSize][poleSize];
+
+        int count = 1;
+        for (int i = 0; i < poleSize; i++) {
+            for (int j = 0; j < poleSize; j++) {
+                String strCount = Integer.toString(count);
+                plotArray[i][j] = strCount;
+                count++;
+            }
+        }
 
         for (int i = 0; i < mapArray[0].length; i++) {
             for (int j = 0; j < mapArray.length; j++) {
@@ -38,11 +49,12 @@ public class GraphicMapXO {
         return queue;
     }
 
-    private static void printGameLine(Queue<String> q) {
-        String[] array = new String[5];
+    private void printGameLine(Queue<String> q) {
+        String[] array = new String[poleSize * 2 - 1];
         String s = " | ";
-        array[1] = s;
-        array[3] = s;
+        for (int i = 1; i < poleSize * 2 - 1; i = i + 2) {
+            array[i] = s;
+        }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {

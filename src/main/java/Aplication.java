@@ -22,7 +22,6 @@ public class Aplication {
 
         graphicMapXO.printMap(currentGameMap);
 
-
         currentFigure = gameLogic.getFigures(newGame, currentFigure, graphicMapXO, currentGameMap, checks, scanner);
         gameLogic.whoWin(currentFigure, checks);
 

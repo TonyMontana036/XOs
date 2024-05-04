@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class GameLogicTest {
@@ -27,7 +26,7 @@ public class GameLogicTest {
         System.setErr(new PrintStream(errContent));
 
 
-        for (int i = 0; i <8; i++){
+        for (int i = 0; i < 8; i++) {
             newGame.incStepCounter();
         }
 
@@ -35,8 +34,9 @@ public class GameLogicTest {
 
         gameLogic.whoWin(currentFigure, checks);
 
-        System.err.print("Ничья");
-        assertEquals("Ничья", errContent.toString());
+       // System.err.print("Ничья");
+        assertEquals("", errContent.toString());
+        scanner.close();
     }
 
     @Test
