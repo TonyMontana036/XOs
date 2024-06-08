@@ -30,7 +30,7 @@ public class GameLogicTest {
             newGame.incStepCounter();
         }
 
-        gameLogic.getFigures(newGame, currentFigure, graphicMapXO, currentGameMap, checks, scanner);
+        gameLogic.gameProcess(newGame, currentGameMap, scanner);
 
         gameLogic.whoWin(currentFigure, checks);
 

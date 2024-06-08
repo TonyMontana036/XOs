@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class GameSettings {
 
@@ -8,12 +7,12 @@ public class GameSettings {
 
     private final Figures[][] gamePole;
 
-    private final List<Integer> array = new ArrayList<>();
+    private final List<Integer> arrayOfSteps = new ArrayList<>();
 
     private int square;
 
-    public List<Integer> getArray() {
-        return array;
+    public List<Integer> getArrayOfSteps() {
+        return arrayOfSteps;
     }
 
     public int getSquare() {

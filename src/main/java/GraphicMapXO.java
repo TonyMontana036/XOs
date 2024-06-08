@@ -65,4 +65,14 @@ public class GraphicMapXO {
 
         System.out.println();
     }
+
+    public void enterFigureIntoRightPolePrinter(Figures currentFigure) {
+        System.out.println();
+        System.out.println("Укажите свободное поле для ввода " + currentFigure.getNamed() + "а");
+        System.out.println();
+    }
+
+    public void printRule(Figures currentFigure, GameSettings newGame) {
+        System.out.println("Введите номер поля для " + currentFigure.getNamed() + "а : 1 - " + newGame.getSquare());
+    }
 }
