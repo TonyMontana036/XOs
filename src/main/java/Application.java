@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class Aplication {
+public class Application {
 
     /**
      * []Юнит тесты
@@ -11,13 +9,10 @@ public class Aplication {
 
     public static void main(String[] args) {
         GameLogic gameLogic = new GameLogic();
-        Scanner scanner = new Scanner(System.in);
 
         GameSettings newGame = new GameSettings(3);
         Figures[][] currentGameMap = newGame.getGamePoles();
 
-        gameLogic.gameProcess(newGame, currentGameMap, scanner);
-
-        scanner.close();
+        gameLogic.gameProcess(newGame, currentGameMap);
     }
 }

@@ -6,7 +6,8 @@ public class GameLogic {
     GraphicMapXO graphicMapXO = new GraphicMapXO();
 
 
-    public void gameProcess(GameSettings newGame, Figures[][] currentGameMap, Scanner scanner) {
+    public void gameProcess(GameSettings newGame, Figures[][] currentGameMap) {
+        Scanner scanner = new Scanner(System.in);
         graphicMapXO.printMap(currentGameMap);
         PolePoint currentPolePoint;
         boolean isExitGame = false;
@@ -59,6 +60,7 @@ public class GameLogic {
             }
         } while (!isExitGame);
         whoWin(currentFigure, checks);
+        scanner.close();
     }
 
     private Figures figureSwitch(Figures currentFigure) {

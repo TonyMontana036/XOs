@@ -18,7 +18,6 @@ public class GameLogicTest {
         GameSettings newGame = new GameSettings(3);
         Figures currentFigure = Figures.POINT;
         Figures[][] currentGameMap = newGame.getGamePoles();
-        GraphicMapXO graphicMapXO = new GraphicMapXO();
         Checks checks = new Checks();
         Scanner scanner = new Scanner("2");
 
@@ -30,7 +29,7 @@ public class GameLogicTest {
             newGame.incStepCounter();
         }
 
-        gameLogic.gameProcess(newGame, currentGameMap, scanner);
+        gameLogic.gameProcess(newGame, currentGameMap);
 
         gameLogic.whoWin(currentFigure, checks);
 
