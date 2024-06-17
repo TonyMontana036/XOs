@@ -55,12 +55,17 @@ public class GameLogic {
             newGame.incStepCounter();
 
             if (checks.isWin() || !(newGame.getStepCounter() < newGame.getSquare() + 1)) {
-                //|| checks.forceDraw.isEmpty()
                 isExitGame = true;
             }
         } while (!isExitGame);
         whoWin(currentFigure, checks);
-        scanner.close();
+        oneMoreTime();
+    }
+
+    private static void oneMoreTime() {
+        System.out.println();
+        System.out.println("Еще Раз? Y/N");
+        System.out.println();
     }
 
     private Figures figureSwitch(Figures currentFigure) {
