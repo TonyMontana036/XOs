@@ -25,7 +25,7 @@ public class GameSettings {
 
     public GameSettings(int lengthWidthPole) {
         gamePole = new Figures[lengthWidthPole][lengthWidthPole];
-        square = lengthWidthPole*lengthWidthPole;
+        square = lengthWidthPole * lengthWidthPole;
     }
 
     public void addFigureIntoPole(PolePoint polePoint, Figures figure) {

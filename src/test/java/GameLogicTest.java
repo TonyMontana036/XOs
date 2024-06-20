@@ -29,7 +29,7 @@ public class GameLogicTest {
             newGame.incStepCounter();
         }
 
-        gameLogic.gameProcess(newGame, currentGameMap);
+        gameLogic.gameProcessSolo(newGame, currentGameMap);
 
         gameLogic.whoWin(currentFigure, checks);
 

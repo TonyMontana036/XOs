@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Application {
 
     /**
@@ -11,31 +9,18 @@ public class Application {
      */
 
     public static void main(String[] args) {
-        boolean isExit = false;
-
+        boolean isExit;
         do {
-            String goToExit = null;
             GameLogic gameLogic = new GameLogic();
 
             GameSettings newGame = new GameSettings(3);
             Figures[][] currentGameMap = newGame.getGamePoles();
 
-            gameLogic.gameProcess(newGame, currentGameMap);
+            //gameLogic.gameProcessSolo(newGame, currentGameMap);
 
-            Scanner scanner = new Scanner(System.in);
-            while (goToExit == null) {
-                goToExit = scanner.next();
-                if (goToExit.equals("Y") || goToExit.equals("y")) {
-                    isExit = false;
-                } else if (goToExit.equals("N") || goToExit.equals("n")) {
-                    isExit = true;
-                } else {
-                    goToExit = null;
-                    System.out.println();
-                    System.out.println("Y/N");
-                    System.out.println();
-                }
-            }
+            gameLogic.gameProcessVsBot(newGame, currentGameMap, false);
+
+            isExit = gameLogic.isExit();
         } while (!isExit);
     }
 }
